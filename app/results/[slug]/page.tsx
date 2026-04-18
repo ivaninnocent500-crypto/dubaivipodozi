@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { fetchProductsByResultSlug } from '@/lib/supabase/products'
 import { Product } from '@/types'
 import ProductCard from '@/components/product/ProductCard'
-import Container from '@/components/ui/Container'
+import Container from '@/ui/Container'
 
 const resultsMap: Record<string, { title: string; description: string }> = {
   'flat-tummy': {

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { Product } from '@/types'
 import { fetchProductsByCategory } from '@/lib/supabase/products'
 import ProductCard from '@/components/product/ProductCard'
-import Container from '@/components/ui/Container'
+import Container from '@/ui/Container'
 import { trackPageView } from '@/lib/analytics/track'
 
 interface CategoryPageProps {

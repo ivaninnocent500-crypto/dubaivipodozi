@@ -4,7 +4,7 @@
 import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCartStore } from '@/store/cartStore'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 import LipaHapaModal from './LipaHapaModal'
 import { FileText, MessageCircle } from 'lucide-react'
 
