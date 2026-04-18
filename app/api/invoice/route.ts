@@ -372,7 +372,11 @@ export async function POST(req: Request) {
 
     const pdfBytes = await pdfDoc.save()
 
-    return new NextResponse(pdfBytes, {
+    // We convert the pdfBytes into a Buffer to ensure 
+    // NextResponse handles the body correctly during the build process
+    const body = Buffer.from(pdfBytes)
+
+    return new NextResponse(body, {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
