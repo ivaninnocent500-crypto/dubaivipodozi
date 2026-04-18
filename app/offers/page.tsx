@@ -1,4 +1,3 @@
-// app/offers/page.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -7,22 +6,38 @@ import { Product } from '@/types'
 import ProductCard from '@/components/product/ProductCard'
 import Container from '@/components/ui/Container'
 
+// We define a local interface that extends your main Product type
+// to include the discount field for this specific page.
+interface ProductWithDiscount extends Product {
+  discount?: number;
+}
+
 export default function OffersPage() {
-  const [offers, setOffers] = useState<Product[]>([])
+  const [offers, setOffers] = useState<ProductWithDiscount[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const load = async () => {
-      const all = await fetchProducts()
-      const discounted = all.filter(p => p.discount && p.discount > 0)
-      setOffers(discounted)
-      setLoading(false)
+      try {
+        const all = await fetchProducts() as ProductWithDiscount[]
+        // Using optional chaining to safely check for the discount property
+        const discounted = all.filter(p => (p.discount ?? 0) > 0)
+        setOffers(discounted)
+      } catch (error) {
+        console.error("Failed to load offers:", error)
+      } finally {
+        setLoading(false)
+      }
     }
     load()
   }, [])
 
   if (loading) {
-    return <Container className="py-20"><div className="h-40 bg-gray-100 animate-pulse" /></Container>
+    return (
+      <Container className="py-20">
+        <div className="h-40 bg-gray-100 animate-pulse rounded-lg" />
+      </Container>
+    )
   }
 
   return (
@@ -34,6 +49,7 @@ export default function OffersPage() {
           Exclusive deals on premium skincare and fragrance.
         </p>
       </div>
+      
       {offers.length === 0 ? (
         <p className="text-center text-gray-400">No active offers at the moment. Check back soon!</p>
       ) : (
