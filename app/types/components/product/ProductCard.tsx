@@ -94,7 +94,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
           
           {/* Ingredient Icons */}
           <div className="flex gap-2 mt-2">
-            {product.ingredients.slice(0, 3).map((ingredient, idx) => (
+           {(product.ingredients ?? []).slice(0, 3).map((ingredient, idx) => (
+
               <Tooltip.Provider key={idx}>
                 <Tooltip.Root>
                   <Tooltip.Trigger asChild>

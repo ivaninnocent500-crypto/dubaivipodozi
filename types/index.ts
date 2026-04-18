@@ -26,6 +26,8 @@ export interface Product {
   created_at?: string // for sorting new arrivals
   isNew?: boolean // optional badge
   rating?: number // optional star rating
+  discount?: number | null 
+  results?: string[]
 }
 
 export interface CartItem {
