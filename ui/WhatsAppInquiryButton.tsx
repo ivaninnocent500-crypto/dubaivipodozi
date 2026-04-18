@@ -1,6 +1,6 @@
 // components/product/WhatsAppInquiryButton.tsx
 'use client'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 
 interface WhatsAppInquiryButtonProps {
   productName?: string
@@ -13,7 +13,7 @@ export default function WhatsAppInquiryButton({
   productBrand,
   className = '',
 }: WhatsAppInquiryButtonProps) {
-  const phoneNumber = "255620148904"
+  const phoneNumber = "255757374368"
 
   // Determine the message
   let message = ''

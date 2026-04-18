@@ -2,8 +2,8 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import  './globals.css'
-import HeaderWrapper from '@/components/ui/HeaderWrapper'
-import Footer from '@/components/ui/Footer'
+import HeaderWrapper from '@/ui/HeaderWrapper'
+import Footer from '@/ui/Footer'
 import CartDrawer from '@/components/cart/CartDrawer'
 import QuizModal from '@/components/quiz/QuizModal'
 
