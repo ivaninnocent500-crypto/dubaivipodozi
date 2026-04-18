@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { fetchProducts } from '@/lib/supabase/products'
 import { Product } from '@/types'
 import ProductCard from '@/components/product/ProductCard'
-import Container from '@/components/ui/Container'
+import Container from '@/ui/Container'
 
 // We define a local interface that extends your main Product type
 // to include the discount field for this specific page.

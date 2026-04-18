@@ -4,7 +4,7 @@
 import { motion } from 'framer-motion'
 import { CheckCircle, Download, MessageCircle, Home } from 'lucide-react'
 import Link from 'next/link'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 
 export default function SuccessPage() {
   return (

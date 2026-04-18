@@ -3,7 +3,7 @@
 
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 import { PlusCircle, Package, Camera, Check, Loader2 } from 'lucide-react'
 
 export default function AdminDashboard() {

@@ -4,7 +4,7 @@
 import { useCartStore } from '@/store/cartStore'
 import CheckoutForm from '@/components/checkout/CheckoutForm'
 import OrderSummary from '@/components/checkout/OrderSummary'
-import Container from '@/components/ui/Container'
+import Container from '@/ui/Container'
 
 export default function CheckoutPage() {
   const items = useCartStore(state => state.items)
