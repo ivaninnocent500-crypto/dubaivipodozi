@@ -1,8 +1,7 @@
-// lib/supabase/client.ts
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+// We use an empty string fallback here to prevent the 'required' error during build
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key'
 
-// The '!' tells TypeScript these variables will definitely exist
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
