@@ -1,10 +1,9 @@
-// components/ui/SearchOverlay.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, X } from 'lucide-react'
-import { fetchProducts } from '@/lib/supabase/products' // Import your fetcher
+import { fetchProducts } from '@/lib/supabase/products' 
 import { Product } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,7 +12,6 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean, on
   const [query, setQuery] = useState('')
   const [allProducts, setAllProducts] = useState<Product[]>([])
   
-  // Load products once when the overlay is opened
   useEffect(() => {
     if (isOpen) {
       const load = async () => {
@@ -24,7 +22,6 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean, on
     }
   }, [isOpen])
 
-  // Filter products based on search query
   const results = query.length > 2 
     ? allProducts.filter(p => 
         p.name.toLowerCase().includes(query.toLowerCase()) || 
@@ -87,7 +84,7 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean, on
               ))}
               
               {query.length > 2 && results.length === 0 && (
-                <p className="text-gray-400 italic py-4">No luxury items found for "{query}"</p>
+                <p className="text-gray-400 italic py-4">No luxury items found for &quot;{query}&quot;</p>
               )}
             </div>
           </div>
@@ -96,4 +93,3 @@ export default function SearchOverlay({ isOpen, onClose }: { isOpen: boolean, on
     </AnimatePresence>
   )
 }
-

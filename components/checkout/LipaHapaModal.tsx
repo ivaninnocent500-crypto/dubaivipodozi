@@ -99,7 +99,7 @@ export default function LipaHapaModal({
               </p>
               <p className="flex gap-3">
                 <span className="font-bold">2.</span>
-                Choose 'Lipa kwa M-Pesa'
+                Choose &apos;Lipa kwa M-Pesa&apos;
               </p>
               <p className="flex gap-3">
                 <span className="font-bold">3.</span>
