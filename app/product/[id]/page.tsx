@@ -8,7 +8,7 @@ import { Navigation, Pagination } from 'swiper/modules'
 import Image from 'next/image'
 import { supabase } from '@/lib/supabase/client' // Use Supabase client
 import { Product } from '@/types'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 import NoteWheel from '@/components/product/NoteWheel'
 import IngredientTooltip from '@/components/product/IngredientTooltip'
 import { useCartStore } from '@/store/cartStore'
