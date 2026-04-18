@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Product } from '@/types'
 import { useCartStore } from '@/store/cartStore'
 import { useUIStore } from '@/store/uiStore'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { trackEvent } from '@/lib/analytics/track'
 
