@@ -5,7 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useQuizStore } from '@/store/quizStore'
 import { useUIStore } from '@/store/uiStore'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 import { trackEvent } from '@/lib/analytics/track'
 
 const steps = [
