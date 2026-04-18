@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Copy, CheckCircle2, X } from 'lucide-react'
 import { useState } from 'react'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 
 interface LipaHapaModalProps {
   total: number // ✅ already TZS from parent
