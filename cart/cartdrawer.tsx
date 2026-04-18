@@ -5,9 +5,9 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { useUIStore } from '@/store/uiStore'
 import { useCartStore } from '@/store/cartStore'
 import CartItem from './CartItem'
-import Button from '@/components/ui/Button'
+import Button from '@/ui/Button'
 import Link from 'next/link'
-import WhatsAppInquiryButton from '@/components/ui/WhatsAppInquiryButton'
+import WhatsAppInquiryButton from '@/ui/WhatsAppInquiryButton'
 
 const CartDrawer = () => {
   const cartOpen = useUIStore((state) => state.cartOpen)
