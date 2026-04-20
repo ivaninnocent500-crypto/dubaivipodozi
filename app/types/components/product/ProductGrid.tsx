@@ -1,53 +1,97 @@
-//components/product/ProductGrid.tsx
+// components/product/ProductGrid.tsx
+
 'use client'
 
-import { products } from '@/data/products'
+import { useEffect, useState, useRef } from 'react'
+import Link from 'next/link'
+import { fetchProducts } from '@/lib/supabase/products'
+import { Product } from '@/types'
 import ProductCard from './ProductCard'
 import { trackProductImpression } from '@/lib/analytics/track'
-import { useEffect, useRef } from 'react'
 
 const ProductGrid = () => {
+  const [dbProducts, setDbProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    // Track product impressions when grid enters viewport
+    setMounted(true)
+
+    async function getProducts() {
+      const data = await fetchProducts()
+      setDbProducts(data)
+      setLoading(false)
+    }
+
+    getProducts()
+  }, [])
+
+  useEffect(() => {
+    if (!mounted || dbProducts.length === 0) return
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            products.forEach((product, idx) => {
+            dbProducts.forEach((product, idx) => {
               trackProductImpression(product.id, product.name, idx)
             })
             observer.disconnect()
           }
         })
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
-  }, [])
+  }, [dbProducts, mounted])
+
+  if (!mounted) {
+    return <div className="min-h-[220px] bg-white" />
+  }
+
+  if (loading) {
+    return (
+      <section className="bg-white py-5">
+        <div className="px-3 sm:px-4">
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-[22px] font-semibold text-black">Chosen For You</h2>
+          </div>
+
+          <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="w-[116px] h-[210px] shrink-0 rounded-md border border-[#e7e7e7] bg-white animate-pulse"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900">
-            Our Collection
-          </h2>
-          <div className="w-16 h-0.5 bg-accent mx-auto mt-4 mb-4" />
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Discover our signature fragrances, each crafted with rare ingredients and artistic vision.
-          </p>
+    <section ref={sectionRef} className="bg-white py-5">
+      <div className="px-3 sm:px-4">
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-[22px] font-semibold text-black">Chosen For You</h2>
+          <Link href="/products" className="text-[13px] text-sky-700 font-medium">
+            View all
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="lg:hidden flex gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
+          {dbProducts.map((product) => (
+            <ProductCard key={product.id} product={product} layout="horizontal" />
+          ))}
+        </div>
+
+        <div className="hidden lg:grid grid-cols-4 xl:grid-cols-5 gap-4">
+          {dbProducts.map((product) => (
+            <ProductCard key={product.id} product={product} layout="grid" />
           ))}
         </div>
       </div>
@@ -56,3 +100,5 @@ const ProductGrid = () => {
 }
 
 export default ProductGrid
+
+
